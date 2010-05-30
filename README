@@ -1,0 +1,4 @@
+Requirements:
+
+Python 2.5 and simplejson or Python 2.6
+The Python API of Hudson is not used as it is the same as the JSON one minus the security.
