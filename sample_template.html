@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hudson branches report</title>
+    </head>
+    <body>
+        % for job in jobs:
+            ${jobtitle(job)}
+            <ul>
+                ${jobdetails(job['branches'])}
+            </ul>
+        % endfor
+    </body>
+</html>
+
+<%def name="jobtitle(job)">
+    <h1><a href="${job['url']}">${job['name']}</a></h1>
+</%def>
+
+<%def name="jobdetails(branches)">
+    % for name, result in branches.iteritems():
+        <li>${name}: ${result}</li>
+    % endfor
+</%def>
