@@ -29,23 +29,23 @@ def get_all(baseurl, opener = None):
     infos = []
 
     for job in data["jobs"]:
-      info = {}
-      info["name"] = job["name"]
-      info["url"] = job["url"]
+        info = {}
+        info["name"] = job["name"]
+        info["url"] = job["url"]
 
-      results = {}
-      for build in job["builds"]:
-        result = build["result"]
-        if result:
-          for action in build["actions"]:
-              if action.has_key("lastBuiltRevision") \
-              and action["lastBuiltRevision"].has_key("branch"):
-                for branch in action["lastBuiltRevision"]["branch"]:
-                  if not results.has_key(branch["name"]):
-                    results[branch["name"]] = result
+        results = {}
+        for build in job["builds"]:
+            result = build["result"]
+            if result:
+                for action in build["actions"]:
+                    if action.has_key("lastBuiltRevision") \
+                    and action["lastBuiltRevision"].has_key("branch"):
+                        for branch in action["lastBuiltRevision"]["branch"]:
+                            if not results.has_key(branch["name"]):
+                                results[branch["name"]] = result
 
-      info["branches"] = results
+        info["branches"] = results
 
-      infos.append(info)
+        infos.append(info)
 
     return infos
